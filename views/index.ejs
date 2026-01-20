@@ -32,7 +32,7 @@
                                     <%= user.nombre %>
                                 </strong></span>
                         </li>
-                        <% if (user.activo) { %>
+                        <% if (user.es_premium) { %>
                             <li class="nav-item me-2">
                                 <span class="badge bg-success">Premium Activo</span>
                             </li>
@@ -78,7 +78,7 @@
 
             <!-- Tarjeta 2: Contenido Restringido -->
             <div class="col-md-6">
-                <% if (user && user.activo) { %>
+                <% if (user && user.es_premium) { %>
                     <!-- ESTADO ACTIVO (Verde) -->
                     <div class="card border-success h-100 shadow-sm">
                         <div class="card-header bg-success text-white fw-bold">

@@ -13,7 +13,7 @@ export const isGuest = (req, res, next) => {
 };
 
 export const isPremium = (req, res, next) => {
-    if (req.session.user && req.session.user.activo) {
+    if (req.session.user && req.session.user.es_premium) {
         return next();
     }
     res.redirect('/');
