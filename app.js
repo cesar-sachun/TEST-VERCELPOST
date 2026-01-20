@@ -9,7 +9,7 @@ app.set("views", "./views");
 
 app.use(express.static("public"));
 app.use("/", routes);
-
+app.use("/usuarios", usuarioController);
 app.listen(3050, () => {
     console.log("Server started on port http://localhost:3050");
 });

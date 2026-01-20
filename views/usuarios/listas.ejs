@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Usuarios</title>
+</head>
+
+<body>
+    <h1>Gestión de Usuarios</h1>
+
+    <div style="background: #f4f4f4; padding: 20px; margin-bottom: 20px;">
+        <h3>Agregar Usuario</h3>
+        <form action="/usuarios" method="POST">
+            <input type="text" name="nombre" placeholder="Nombre" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <button type="submit">Guardar</button>
+        </form>
+    </div>
+
+    <ul>
+        <% if (usuarios && usuarios.length> 0) { %>
+            <% usuarios.forEach(usuario=> { %>
+                <li>
+                    <strong>
+                        <%= usuario.nombre %>
+                    </strong> (<%= usuario.email %>)
+                </li>
+                <% }) %>
+                    <% } else { %>
+                        <li>No hay usuarios registrados aún.</li>
+                        <% } %>
+    </ul>
+</body>
+
+</html>
