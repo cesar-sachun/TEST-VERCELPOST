@@ -9,16 +9,21 @@ const app = express();
 app.set("view engine", "ejs");
 app.set("views", "./views");
 
+// Necesario para que las cookies funcionen en Vercel (detrás de proxy HTTPS)
+app.set('trust proxy', 1);
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 // Configuración de Session
 app.use(session({
-    secret: 'mi_secreto_super_seguro', // En producción usar variable de entorno
+    secret: process.env.SESSION_SECRET || 'mi_secreto_super_seguro',
     resave: false,
     saveUninitialized: false,
     cookie: {
-        maxAge: 10 * 60 * 1000 // 10 minutos
+        maxAge: 10 * 60 * 1000, // 10 minutos
+        secure: process.env.NODE_ENV === 'production', // True solo en producción (HTTPS)
+        httpOnly: true
     }
 }));
 
