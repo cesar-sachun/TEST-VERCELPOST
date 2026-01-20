@@ -13,12 +13,23 @@ class UsuarioModel {
         }
     }
 
+    // Buscar usuario por email
+    static async buscarPorEmail(email) {
+        try {
+            const { rows } = await sql`SELECT * FROM usuarios WHERE email = ${email}`;
+            return rows[0];
+        } catch (error) {
+            console.error('Error buscando usuario:', error);
+            throw error;
+        }
+    }
+
     // Crear un nuevo usuario
-    static async crear({ nombre, email }) {
+    static async crear({ nombre, email, password }) {
         try {
             const { rows } = await sql`
-        INSERT INTO usuarios (nombre, email) 
-        VALUES (${nombre}, ${email})
+        INSERT INTO usuarios (nombre, email, password) 
+        VALUES (${nombre}, ${email}, ${password})
         RETURNING *;
       `;
             return rows[0];
